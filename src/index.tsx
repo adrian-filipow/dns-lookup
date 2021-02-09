@@ -12,6 +12,13 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
+/**
+ * importing whole bootstrap css
+ * unused css will be removed after the build with
+ * purgecss - https://purgecss.com/guides/react.html
+ */
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 // Use consistent styling
 import 'sanitize.css/sanitize.css';
 
