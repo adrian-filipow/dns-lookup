@@ -7,3 +7,6 @@
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
+
+  # needs status to prevent changing on redirects
+  status = 200
