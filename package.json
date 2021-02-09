@@ -79,7 +79,7 @@
     "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
     "prettify": "prettier --write",
     "extract-messages": "i18next-scanner --config=internals/extractMessages/i18next-scanner.config.js",
-    "netBuild": "netlify-lambda build /src/lambda"
+    "netBuild": "netlify-lambda build lambda"
   },
   "browserslist": {
     "production": [
@@ -127,5 +127,8 @@
         "statements": 90
       }
     }
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "7.12.13"
   }
 }
