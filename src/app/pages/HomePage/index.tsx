@@ -1,7 +1,14 @@
+/**
+ *
+ * HomePage
+ *
+ */
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-export function HomePage() {
+interface Props {}
+
+export function HomePage(props: Props) {
   return (
     <>
       <Helmet>
