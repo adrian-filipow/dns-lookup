@@ -10,7 +10,7 @@ import { DnsLookupFormState } from './types';
 import { DnsResponse } from './types';
 
 export const initialState: DnsLookupFormState = {
-  domainName: 'example.com',
+  domainName: 'google.com',
 };
 
 const slice = createSlice({
