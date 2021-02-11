@@ -55,7 +55,7 @@ export function DnsLookupForm(props: Props) {
                 changeDnsResults(response.data);
               })
               .catch(function (error) {
-                alert(error);
+                alert(error.toString());
               });
           } catch (err) {
             alert(err.toString());
