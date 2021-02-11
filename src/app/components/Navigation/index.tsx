@@ -24,7 +24,10 @@ export function Navigation(props: Props) {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link href="https://github.com/adrian-filipow/dns-lookup">
+              <Nav.Link
+                target="_blank"
+                href="https://github.com/adrian-filipow/dns-lookup"
+              >
                 Github
               </Nav.Link>
             </Nav>
