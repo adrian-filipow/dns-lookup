@@ -32,11 +32,14 @@ interface Props {
 
 export function DnsRecord(props: Props) {
   function handleTime(seconds: number) {
-    if (seconds >= 86400) {
-      return `${(seconds / 86400).toFixed(2)} days`;
+    if (seconds > 86400) {
+      return `${(seconds / 86400).toFixed(0)} days`;
     }
-    if (seconds >= 3600) {
-      return `${(seconds / 3600).toFixed(2)} hours`;
+    if (seconds > 3600) {
+      return `${(seconds / 3600).toFixed(0)} hours`;
+    }
+    if (seconds > 60) {
+      return `${(seconds / 60).toFixed(0)} minutes`;
     }
     return `${seconds} seconds`;
   }
@@ -51,7 +54,9 @@ export function DnsRecord(props: Props) {
           <RecordValue>Address: {props.value.address}</RecordValue>
         )}
         {props.value.ttl && (
-          <RecordValue>TTL: {handleTime(props.value.ttl)}</RecordValue>
+          <RecordValue>
+            TTL: {props.value.ttl} seconds ≈ {handleTime(props.value.ttl)}
+          </RecordValue>
         )}
         {props.value.entries && (
           <RecordValue>Entry: {props.value.entries}</RecordValue>
@@ -75,16 +80,27 @@ export function DnsRecord(props: Props) {
           <RecordValue>Serial: {props.value.serial}</RecordValue>
         )}
         {props.value.refresh && (
-          <RecordValue>Refresh: {handleTime(props.value.refresh)}</RecordValue>
+          <RecordValue>
+            Refresh: {props.value.refresh} seconds ≈{' '}
+            {handleTime(props.value.refresh)}
+          </RecordValue>
         )}
         {props.value.retry && (
-          <RecordValue>Retry: {handleTime(props.value.retry)}</RecordValue>
+          <RecordValue>
+            Retry: {props.value.retry} seconds ≈ {handleTime(props.value.retry)}
+          </RecordValue>
         )}
         {props.value.expire && (
-          <RecordValue>Expire: {handleTime(props.value.expire)}</RecordValue>
+          <RecordValue>
+            Expire: {props.value.expire} seconds ≈{' '}
+            {handleTime(props.value.expire)}
+          </RecordValue>
         )}
         {props.value.minttl && (
-          <RecordValue>Min TTL: {handleTime(props.value.minttl)}</RecordValue>
+          <RecordValue>
+            Min TTL: {props.value.minttl} seconds ≈{' '}
+            {handleTime(props.value.minttl)}
+          </RecordValue>
         )}
         {props.value.critical && (
           <RecordValue>Critical: {props.value.critical}</RecordValue>
