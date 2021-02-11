@@ -3,9 +3,9 @@ const dns = require('dns');
 // public google dns server
 dns.setServers(['8.8.8.8']);
 
+// grouping lookup types depending on return structure
 const groupSingle = ['A', 'AAAA', 'CNAME', 'NS', 'PTR', 'TXT'];
 const groupObjects = ['CAA', 'MX', 'NAPTR', 'SOA', 'SRV'];
-
 const groupAll = [...groupSingle, ...groupObjects, 'ANY'];
 
 class DNSResolver {
@@ -102,10 +102,12 @@ exports.handler = async function (event, context, callback) {
   let type = query.type;
   let domainName = query.domainName;
 
+  // set default type
   if (!type) {
     type = 'ANY';
   }
 
+  // check if type is valid
   if (!groupAll.includes(type)) {
     return {
       statusCode: 400,
@@ -114,6 +116,8 @@ exports.handler = async function (event, context, callback) {
       }),
     };
   }
+
+  // check if domain is provided
   if (!domainName) {
     return {
       statusCode: 400,
@@ -121,17 +125,25 @@ exports.handler = async function (event, context, callback) {
     };
   }
 
-  // create object
-  const resolver = new DNSResolver(type, domainName);
+  try {
+    // create object
+    const resolver = new DNSResolver(type, domainName);
 
-  // get records
-  const records = await resolver.createLookupResolve();
+    // get records
+    const records = await resolver.createLookupResolve();
 
-  // construct api response
-  const response = await resolver.constructAPIResponse(records);
+    // construct api response
+    const response = await resolver.constructAPIResponse(records);
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(response),
-  };
+    return {
+      statusCode: 200,
+      body: JSON.stringify(response),
+    };
+  } catch (err) {
+    function DomainException(message) {
+      this.message = message;
+      this.name = 'DomainException';
+    }
+    throw new DomainException('Network error');
+  }
 };
