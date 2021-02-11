@@ -9,6 +9,7 @@ import { Helmet } from 'react-helmet-async';
 
 import { Navigation } from 'app/components/Navigation';
 import { DnsLookupForm } from 'app/components/DnsLookupForm';
+import { DnsResults } from 'app/components/DnsLookupForm/DnsResults';
 
 import styled from 'styled-components/macro';
 
@@ -18,7 +19,6 @@ import styled from 'styled-components/macro';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { DnsResults } from 'app/components/DnsLookupForm/DnsResults';
 
 interface Props {}
 
