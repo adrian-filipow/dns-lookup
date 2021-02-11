@@ -47,7 +47,6 @@ export function DnsLookupForm(props: Props) {
       <Form
         onSubmit={e => {
           e.preventDefault();
-          console.log({ domainNameIs: domainName });
           try {
             Joi.attempt(domainName, Joi.string().domain());
             axios
